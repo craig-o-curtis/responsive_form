@@ -1,0 +1,125 @@
+<!-- responsive form -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Responsive Online Registration</title>
+		<meta name="description" content="Responsive Online Registration Form">
+    <meta name="author" content="Craig O. Curtis">
+    <!-- favicon -->
+    <link rel="icon" href="">
+		<!-- normalize.css -->
+		<link href="css/normalize.min.css" rel="stylesheet"/>
+    <!-- font awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- a flexbox project I'm working on -->
+    <link href="css/magnet.v3.css" rel="stylesheet"/>
+    <link href="css/form_styles.css" rel="stylesheet"/>
+
+    <!-- scripts -->
+		<!-- jQuery - no good reason to support IE 6-8. It is 2016.-->	
+		<script src="js/jquery-2.2.0.min.js"></script>
+	</head>
+
+	<body>
+		<div id="content" class="outer_wrapper">
+	    <!-- handlebars -->
+	    <script src="js/handlebars-v4.0.5.js"></script>
+	    <!-- below need to grab and compile in js file -->
+			<script id="formtemplate" type="text/template"> 
+				<header>
+	  				<h1>{{title}}</h1>
+				</header>
+				<div class="inner_wrapper">
+					<div>
+						<div class="welcome">
+							<h1>{{announcement}}</h1>
+							<p>{{subheading}}</p>
+						</div>
+						<form class="{{contactintro.cssclass}} {{flexcontainers.vertical}}">
+							<fieldset class="{{flexchildren.full}}">
+								<legend class="{{flexcontainers.leftcenter}}">
+									<h2 class="{{flexchildren.full}}">{{contactintro.text}}</h2>
+								</legend>
+
+								<div class="{{flexcontainers.spread}}">
+
+									{{#formLabel}}
+									<label for="{{fer}}" class="{{labelclass}}">{{label}}</label>
+									<input id="{{id}}" name="{{name}}" type="{{type}}" class="{{inputclass}}" placeholder="{{placeholder}}" />
+									{{/formLabel}}
+
+									<label for="{{states.fer}}" class="{{states.labelclass}}">{{states.label}}</label>
+
+									<div class="{{states.selectclass}}">
+										<select id="{{states.id}}" class="{{states.inputclass}}" required>
+											{{!-- need to access & iterate state array --}}
+											{{!-- mimics placeholder --}}
+											<option class="{{states.labelclass}}" value="" disabled selected>{{states.placeholder}}</option>
+
+											{{#states.state}}
+											<option value="{{this}}">{{this}}</option>
+											{{/states.state}}
+										</select>
+									</div>
+								</div>
+								<div class="{{flexcontainers.leftcenter}}">
+									<label for="{{zipcode.fer}}" class="{{zipcode.labelclass}}">{{zipcode.label}}</label>
+									<input id="{{zipcode.id}}" type="{{zipcode.type}}" maxlength="{{zipcode.maxlength}}" class="{{zipcode.inputclass}}" />
+								</div> 
+							</fieldset>
+
+							{{!-- newsletter section --}}
+							<fieldset class="{{flexchildren.full}}">
+								<legend class="{{flexcontainers.vertical}}">
+									<h2 class="{{flexchildren.full}}">{{news.newsletter}}</h2>
+									<p class="{{flexchildren.full}}">{{news.newsintro}}</p>
+								</legend>
+
+								<div class="{{flexcontainers.vertical}}">
+
+									{{!-- checkboxes --}}
+									{{#news.newsletters}}
+									<div class="{{flexchild}}">
+										<div class="{{flexcontainer}}">
+											<input id="{{id}}" type="{{type}}" name="{{name}}" value="{{value}}" class="{{inputclass}}" />
+											<label for="{{fer}}" data-type="{{type}}" class="{{labelclass}} mg-clip">&nbsp;{{label}}</label>
+										</div>
+									</div>
+									{{/news.newsletters}}
+								
+									<p class="{{news.flexchild}}">{{news.newsFormat}}</p>
+
+									{{!-- radio inputs --}}
+									{{#radio}}
+									<div class="{{flexchild}}">
+										<div class="{{flexcontainer}}">
+											<input id="{{id}}" type="{{type}}" name="{{name}}" value="{{value}}" class="{{inputclass}}"/>
+											<label for="{{fer}}" class="{{labelclass}}" data-type="{{type}}">{{label}}</label>
+										</div>
+									</div>
+									{{/radio}}
+
+
+									<p for="{{comments.fer}}" class="{{comments.flexchild}}">{{comments.title}}</p>
+									<textarea id="{{comments.id}}" class="{{comments.textareacss}}" placeholder="{{comments.placeholder}}" spellcheck="{{comments.spellcheck}}" maxlength="{{comments.maxlength}}"></textarea>
+
+									<input type="{{submit.type}}" class="{{submit.inputclass}}" value="{{submit.value}}"/>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+
+					<footer>
+						<p class="{{footer.cssclass}}">{{footer.textcontent}}</p>
+					</footer>
+				</div>
+			</script>
+			<!-- myhandlebars -->
+			<script src="js/myhandlebars.js"></script>
+		</div>
+		
+	</body>
+</html>

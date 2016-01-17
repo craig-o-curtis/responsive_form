@@ -1,0 +1,752 @@
+/******************************************
+ ********** Magnet.css alpha V.1 **********
+ ******************************************/
+
+/* This project is an attempt to hopefully simplify 
+   new flexbox layouts.
+   The real feature here is the "static mg-clips" which
+   mimics Bootstrap's grid system to a degree, and allows
+   for countless combinations.
+   Also, the strength of Magnet.css is the layering of clips
+   within boxes within clips within boxes... thus very creative
+   layouts can be created with this responsive framework.
+   However, one difficulty is CSS animations do not tie in 
+   as beautifully as hoped. For example, for hidden navbars and
+   sidebars, the transitions don't work as nice because flexbox
+   widths cannot be easily accessed. This is a bux I hope to fix
+   in future releases! */
+
+/* de-comment to ensure long strings fit in boxes and clips */
+/** {
+	word-break: break-word;
+}*/
+
+/* horizontal reverse of children clips */
+.mg-hbox-rev-left,
+.mg-hbox-rev-right,
+.mg-hbox-rev-center,
+.mg-hbox-rev-spread,
+.mg-hbox-rev-apart {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: row-reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+/* centered magnet boxes */
+.mg-hbox-center,
+.mg-hbox-center,
+.mg-hbox-rev-center {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+/* spread / justified magnet boxes */
+.mg-hbox-spread,
+.mg-hbox-rev-spread {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+/* apart / justified magnet boxes */
+.mg-hbox-apart,
+.mg-hbox-rev-apart {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+        -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+
+/* forever horizontal */
+.mg-hbox-left,
+.mg-hbox-right {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+/* keeps children clips on left and reverses order */
+.mg-hbox-rev-left {
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+/* pushes children clips to the right of magnet parent */
+.mg-hbox-right {
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+.mg-vbox-rev /* forever vertical */ {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: column-reverse;
+	    -ms-flex-direction: column-reverse;
+	        flex-direction: column-reverse;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+.mg-vbox /* forever veritcal */ {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+/*** helper class ***/
+/** vertical centering **/
+.mg-vcenter {
+	 align-items: center;
+}
+
+/** magnet-clip types **/
+/* default clip styling, takes up only amount of space required */
+.mg-clip {
+	-webkit-box-flex: initial;
+	-webkit-flex-grow: initial;
+	    -ms-flex-positive: initial;
+	        flex-grow: initial;
+	-webkit-flex: initial;
+}
+
+/* forever collapse, change with JS/jQuery */
+.mg-clip-0 {
+	width: 0;
+	display: none;
+}
+/* always maintain Bootstrap dimensions */
+.mg-clip-xs-0,
+.mg-clip-sm-0,
+.mg-clip-md-0,
+.mg-clip-lg-0 {
+	width: 0;
+	display: block;
+}
+/* clip takes up 1 time amount of alotted space */
+.mg-clip-1x100w {
+	width: 100%;
+}
+
+.mg-clip-1x100w,
+.mg-clip-1x {
+	flex-grow: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex-grow: 1;
+	    -ms-flex-positive: 1;
+}
+/* clip takes up 2 times amount of alotted space */
+.mg-clip-2x100w,
+.mg-clip-2x {
+	-webkit-box-flex: 2;
+	-webkit-flex-grow: 2;
+	    -ms-flex-positive: 2;
+	        flex-grow: 2;	
+}
+/* clip takes up 3 times amount of alotted space */
+.mg-clip-3x100w,
+.mg-clip-3x {
+	-webkit-box-flex: 3;
+	-webkit-flex-grow: 3;
+	    -ms-flex-positive: 3;
+	        flex-grow: 3;	
+}
+/* clip takes up 4 times amount of alotted space */
+.mg-clip-4x100w,
+.mg-clip-4x {
+	-webkit-box-flex: 4;
+	-webkit-flex-grow: 4;
+	    -ms-flex-positive: 4;
+	        flex-grow: 4;
+}
+/* no wrap */
+.mg-box-nowrap {
+	    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+}
+/* centers clips ???????? */
+.mg-clip-center {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
+}
+/* for individual clips, pushes siblings left */
+.mg-clip-push-left {
+	margin-left: auto;
+}
+/* for individual clips, pushes siblings right */
+.mg-clip-push-right {
+	margin-right: auto;
+}
+/* for individual clips, pushes siblings left and right */
+.mg-clip-push-both {
+	margin-left: auto;
+	margin-right: auto;
+}
+.mg-clip-stretch {
+	-webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+}
+
+/* Zero classes! */
+/* These will not display in certain widths. *?
+/* They need to be activated with buttons to toggle out this class
+and toggle related class */
+
+/* REWORKING AT 1452 LINES OF CODE - ALPHA V1.2*/
+/* static boot clips mg-clip-xx */
+.mg-clip-12,
+.mg-clip-xs-12 {
+	width: calc(100%/12 * 12);
+}
+.mg-clip-11,
+.mg-clip-xs-11 {
+	width: calc(100%/12 * 11);
+}
+.mg-clip-10,
+.mg-clip-xs-10 {
+	width: calc(100%/12 * 10);
+}
+.mg-clip-9,
+.mg-clip-xs-9 {
+	width: calc(100%/12 * 9);
+}
+.mg-clip-8,
+.mg-clip-xs-8 {
+	width: calc(100%/12 * 8);
+}
+.mg-clip-7,
+.mg-clip-xs-7 {
+	width: calc(100%/12 * 7);
+}
+.mg-clip-6,
+.mg-clip-xs-6 {
+	width: calc(100%/12 * 6);
+}
+.mg-clip-5,
+.mg-clip-xs-5 {
+	width: calc(100%/12 * 5);
+}
+.mg-clip-4,
+.mg-clip-xs-4 {
+	width: calc(100%/12 * 4);
+}
+.mg-clip-3,
+.mg-clip-xs-3 {
+	width: calc(100%/12 * 3);
+}
+.mg-clip-2,
+.mg-clip-xs-2 {
+	width: calc(100%/12 * 2);
+}
+.mg-clip-1,
+.mg-clip-xs-1 {
+	width: calc(100%/12);
+}
+
+
+/* max-widths media queries first for collapse classes */
+/* under xs devices */
+@media screen and (max-width: 34rem) { 
+	/* set xs to have initial widths here */
+	.mg-clip-xs-0 {
+		display: none;
+	}
+}
+/* under sm devices */
+@media screen and (max-width: 48rem) { 
+	.mg-clip-sm-0 {
+		display: none;
+	}
+}
+/* under md devices */
+@media screen and (max-width: 64rem) { 
+	.mg-clip-md-0 {
+		display: none;
+	}
+}
+/* under lg devices */
+@media screen and (max-width: 75rem) { 
+	.mg-clip-lg-0 {
+		display: none;
+	}
+}
+
+/* xs Small devices (landscape phones, 34rem and up) */
+@media screen and (min-width: 34rem) { 
+	.mg-clip-xs-12 {
+		width: calc(100%/12 * 12);
+	}
+	.mg-clip-xs-11 {
+		width: calc(100%/12 * 11);
+	}
+	.mg-clip-xs-10 {
+		width: calc(100%/12 * 10);
+	}
+	.mg-clip-xs-9 {
+		width: calc(100%/12 * 9);
+	}
+	.mg-clip-xs-8 {
+		width: calc(100%/12 * 8);
+	}
+	.mg-clip-xs-7 {
+		width: calc(100%/12 * 7);
+	}
+	.mg-clip-xs-6 {
+		width: calc(100%/12 * 6);
+	}
+	.mg-clip-xs-5 {
+		width: calc(100%/12 * 5);
+	}
+	.mg-clip-xs-4 {
+		width: calc(100%/12 * 4);
+	}
+	.mg-clip-xs-3 {
+		width: calc(100%/12 * 3);
+	}
+	.mg-clip-xs-2 {
+		width: calc(100%/12 * 2);
+	}
+	.mg-clip-xs-1 {
+		width: calc(100%/12);
+	}
+	/*** set to ng-clip-1x at xs screen size ***/
+	.mg-clip-xs-1x {
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		    -ms-flex-positive: 1;
+		        flex-grow: 1;
+		-webkit-flex: 1;
+		display: block;	
+	}
+	/*** set to ng-clip-2x at xs screen size ***/
+	.mg-clip-xs-2x {
+		-webkit-box-flex: 2;
+		-webkit-flex-grow: 2;
+		    -ms-flex-positive: 2;
+		        flex-grow: 2;
+		-webkit-flex: 2;
+		display: block;	
+	}
+	/*** set to ng-clip-3x at xs screen size ***/
+	.mg-clip-xs-3x {
+		-webkit-box-flex: 3;
+		-webkit-flex-grow: 3;
+		    -ms-flex-positive: 3;
+		        flex-grow: 3;
+		-webkit-flex: 3;
+		display: block;	
+	}
+	/*** set to ng-clip-4x at xs screen size ***/
+	.mg-clip-xs-4x {
+		-webkit-box-flex: 4;
+		-webkit-flex-grow: 4;
+		    -ms-flex-positive: 4;
+		        flex-grow: 4;
+		-webkit-flex: 4;
+		display: block;	
+	}
+}
+
+/* sm Medium devices (tablets, 48em and up) */
+@media screen and (min-width: 48rem) {
+	.mg-clip-sm-12 {
+		width: calc(100%/12 * 12);
+	}
+	.mg-clip-sm-11 {
+		width: calc(100%/12 * 11);
+	}
+	.mg-clip-sm-10 {
+		width: calc(100%/12 * 10);
+	}
+	.mg-clip-sm-9 {
+		width: calc(100%/12 * 9);
+	}
+	.mg-clip-sm-8 {
+		width: calc(100%/12 * 8);
+	}
+	.mg-clip-sm-7 {
+		width: calc(100%/12 * 7);
+	}
+	.mg-clip-sm-6 {
+		width: calc(100%/12 * 6);
+	}
+	.mg-clip-sm-5 {
+		width: calc(100%/12 * 5);
+	}
+	.mg-clip-sm-4 {
+		width: calc(100%/12 * 4);
+	}
+	.mg-clip-sm-3 {
+		width: calc(100%/12 * 3);
+	}
+	.mg-clip-sm-2 {
+		width: calc(100%/12 * 2);
+	}
+	.mg-clip-sm-1 {
+		width: calc(100%/12);
+	}
+	/*** set to ng-clip-1x at sm screen size ***/
+	.mg-clip-sm-1x {
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		    -ms-flex-positive: 1;
+		        flex-grow: 1;
+		-webkit-flex: 1;
+		display: block;	
+	}
+	/*** set to ng-clip-2x at sm screen size ***/
+	.mg-clip-sm-2x {
+		-webkit-box-flex: 2;
+		-webkit-flex-grow: 2;
+		    -ms-flex-positive: 2;
+		        flex-grow: 2;
+		-webkit-flex: 2;
+		display: block;	
+	}
+	/*** set to ng-clip-3x at sm screen size ***/
+	.mg-clip-sm-3x {
+		-webkit-box-flex: 3;
+		-webkit-flex-grow: 3;
+		    -ms-flex-positive: 3;
+		        flex-grow: 3;
+		-webkit-flex: 3;
+		display: block;	
+	}
+	/*** set to ng-clip-4x at sm screen size ***/
+	.mg-clip-sm-4x {
+		-webkit-box-flex: 4;
+		-webkit-flex-grow: 4;
+		    -ms-flex-positive: 4;
+		        flex-grow: 4;
+		-webkit-flex: 4;
+		display: block;	
+	}
+}
+
+/* md Large devices (desktops, 62rem and up) */
+@media screen and (min-width: 62rem) {
+	.mg-clip-md-12 {
+		width: calc(100%/12 * 12);
+	}
+	.mg-clip-md-11 {
+		width: calc(100%/12 * 11);
+	}
+	.mg-clip-md-10 {
+		width: calc(100%/12 * 10);
+	}
+	.mg-clip-md-9 {
+		width: calc(100%/12 * 9);
+	}
+	.mg-clip-md-8 {
+		width: calc(100%/12 * 8);
+	}
+	.mg-clip-md-7 {
+		width: calc(100%/12 * 7);
+	}
+	.mg-clip-md-6 {
+		width: calc(100%/12 * 6);
+	}
+	.mg-clip-md-5 {
+		width: calc(100%/12 * 5);
+	}
+	.mg-clip-md-4 {
+		width: calc(100%/12 * 4);
+	}
+	.mg-clip-md-3 {
+		width: calc(100%/12 * 3);
+	}
+	.mg-clip-md-2 {
+		width: calc(100%/12 * 2);
+	}
+	.mg-clip-md-1 {
+		width: calc(100%/12);
+	}
+	/*** set to ng-clip-1x at sm screen size ***/
+	.mg-clip-md-1x {
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		    -ms-flex-positive: 1;
+		        flex-grow: 1;
+		-webkit-flex: 1;
+		display: block;	
+	}
+	/*** set to ng-clip-2x at sm screen size ***/
+	.mg-clip-md-2x {
+		-webkit-box-flex: 2;
+		-webkit-flex-grow: 2;
+		    -ms-flex-positive: 2;
+		        flex-grow: 2;
+		-webkit-flex: 2;
+		display: block;	
+	}
+	/*** set to ng-clip-3x at sm screen size ***/
+	.mg-clip-md-3x {
+		-webkit-box-flex: 3;
+		-webkit-flex-grow: 3;
+		    -ms-flex-positive: 3;
+		        flex-grow: 3;
+		-webkit-flex: 3;
+		display: block;	
+	}
+	/*** set to ng-clip-4x at sm screen size ***/
+	.mg-clip-md-4x {
+		-webkit-box-flex: 4;
+		-webkit-flex-grow: 4;
+		    -ms-flex-positive: 4;
+		        flex-grow: 4;
+		-webkit-flex: 4;
+		display: block;	
+	}
+}
+
+/* lg Extra large devices (large desktops, 75rem and up) */
+@media screen and (min-width: 75rem) {
+	.mg-clip-lg-12 {
+		width: calc(100%/12 * 12);
+	}
+	.mg-clip-lg-11 {
+		width: calc(100%/12 * 11);
+	}
+	.mg-clip-lg-10 {
+		width: calc(100%/12 * 10);
+	}
+	.mg-clip-lg-9 {
+		width: calc(100%/12 * 9);
+	}
+	.mg-clip-lg-8 {
+		width: calc(100%/12 * 8);
+	}
+	.mg-clip-lg-7 {
+		width: calc(100%/12 * 7);
+	}
+	.mg-clip-lg-6 {
+		width: calc(100%/12 * 6);
+	}
+	.mg-clip-lg-5 {
+		width: calc(100%/12 * 5);
+	}
+	.mg-clip-lg-4 {
+		width: calc(100%/12 * 4);
+	}
+	.mg-clip-lg-3 {
+		width: calc(100%/12 * 3);
+	}
+	.mg-clip-lg-2 {
+		width: calc(100%/12 * 2);
+	}
+	.mg-clip-lg-1 {
+		width: calc(100%/12);
+	}
+	/*** set to ng-clip-1x at sm screen size ***/
+	.mg-clip-lg-1x {
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		    -ms-flex-positive: 1;
+		        flex-grow: 1;
+		-webkit-flex: 1;
+		display: block;	
+	}
+	/*** set to ng-clip-2x at sm screen size ***/
+	.mg-clip-lg-2x {
+		-webkit-box-flex: 2;
+		-webkit-flex-grow: 2;
+		    -ms-flex-positive: 2;
+		        flex-grow: 2;
+		-webkit-flex: 2;
+		display: block;	
+	}
+	/*** set to ng-clip-3x at sm screen size ***/
+	.mg-clip-lg-3x {
+		-webkit-box-flex: 3;
+		-webkit-flex-grow: 3;
+		    -ms-flex-positive: 3;
+		        flex-grow: 3;
+		-webkit-flex: 3;
+		display: block;	
+	}
+	/*** set to ng-clip-4x at sm screen size ***/
+	.mg-clip-lg-4x {
+		-webkit-box-flex: 4;
+		-webkit-flex-grow: 4;
+		    -ms-flex-positive: 4;
+		        flex-grow: 4;
+		-webkit-flex: 4;
+		display: block;	
+	}
+}
+
+/* for secure landscape / portrait classes */
+@media screen and (orientation: portrait) {
+	/* set bootclips to display vertically in portrait */
+	.mg-vcenter {
+		 align-items: initial;
+	}	
+	.mg-box-left,
+	.mg-box-right,
+	.mg-box-center,
+	.mg-box-spread,
+	.mg-box-apart {
+		display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+	    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	}
+	.mg-box-rev-left,
+	.mg-box-rev-right,
+	.mg-box-rev-center,
+	.mg-box-rev-spread,
+	.mg-box-rev-apart {
+		display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		-webkit-flex-direction: column-reverse;
+		    -ms-flex-direction: column-reverse;
+		        flex-direction: column-reverse;
+	    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	}
+	.mg-clip-portrait-full {
+		width: 100%;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	.mg-box-left,
+	.mg-box-right,
+	.mg-box-center,
+	.mg-box-spread,
+	.mg-box-apart {
+		display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: horizontal;
+	    -webkit-box-direction: normal;
+	    -webkit-flex-direction: row;
+	        -ms-flex-direction: row;
+	            flex-direction: row;
+    	flex-wrap: wrap;
+	    -webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        
+	}
+	.mg-box-right,
+	.mg-box-rev-left {
+	    -webkit-box-pack: end;
+		-webkit-justify-content: flex-end;
+		    -ms-flex-pack: end;
+		        justify-content: flex-end;
+	}
+	.mg-box-rev-left,
+	.mg-box-rev-right,
+	.mg-box-rev-center,
+	.mg-box-rev-spread,
+	.mg-box-rev-apart {
+		display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: reverse;
+		-webkit-flex-direction: row-reverse;
+		    -ms-flex-direction: row-reverse;
+		        flex-direction: row-reverse;
+	    -webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;	
+	}
+	.mg-box-center,
+	.mg-box-rev-center {
+	-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+	    -webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
+	}
+	.mg-box-spread,
+	.mg-box-rev-spread {
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+	}
+	.mg-box-apart,
+	.mg-box-rev-apart {
+		justify-content: space-around;
+	}
+
+}
+
